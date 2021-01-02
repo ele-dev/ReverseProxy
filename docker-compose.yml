@@ -5,13 +5,18 @@ services:
     proxy:
         build: "./"
         restart: always
+        volumes: 
+            - certs:/etc/letsencrypt
         # hostname: www.ele-net.de
         ports:
             - "80:80"
-            # - "443:443"
+            - "443:443"
         networks:
             - default
             - dmz_net
 networks:
     dmz_net:
         external: true
+
+volumes:
+    certs:

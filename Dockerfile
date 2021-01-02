@@ -9,6 +9,4 @@ COPY ./backend-not-found.html /var/www/html/backend-not-found.html
 
 # Copy Proxy and SSL configs into the right place
 COPY ./includes/ /etc/nginx/includes/
-
-# Copy existing SSL certificate(s) into the image
-COPY ./ssl-certs/ /etc/ssl/certs/nginx/
+# COPY ./includes/options-ssl-nginx.conf /etc/letsencrypt/
