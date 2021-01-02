@@ -1,14 +1,14 @@
 # Docker image for the nginx reverse proxy
 FROM nginx:1.9
 
-# default conf for proxy service
+# Copy default.conf for proxy service into the image
 COPY ./conf.d/default.conf /etc/nginx/conf.d/default.conf
 
-# NOT FOUND error page
+# Copy NOT FOUND fallback page into the image
 COPY ./backend-not-found.html /var/www/html/backend-not-found.html
 
-# Proxy and SSL configs
+# Copy Proxy and SSL configs into the right place
 COPY ./includes/ /etc/nginx/includes/
 
-# Proxy SSL certificate(s)
+# Copy existing SSL certificate(s) into the image
 COPY ./ssl-certs/ /etc/ssl/certs/nginx/
