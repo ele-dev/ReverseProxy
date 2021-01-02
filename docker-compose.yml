@@ -5,6 +5,7 @@ services:
     proxy:
         image: nginx:1
         restart: always
+        hostname: www.ele-net.de
         ports:
             - "80:80"
             # - "443:443"
