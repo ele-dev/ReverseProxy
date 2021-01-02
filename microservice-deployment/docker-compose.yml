@@ -1,0 +1,14 @@
+# Generic docker-compose template for docker microservices that are supposed to run behind the reverse proxy
+version: '3'
+services:
+    api: 
+		build: .
+		restart: always
+		networks:
+			- reverseproxy_default
+			- default
+networks:
+	reverseproxy_default:
+		external: true
+
+		
