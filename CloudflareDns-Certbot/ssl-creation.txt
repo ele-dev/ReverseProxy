@@ -1,0 +1,9 @@
+# copy the cloudflare credentials inside the image 
+COPY ./cloudflare.ini ~/
+
+# build image
+docker build -t ssl-terminator .
+
+# start temp container to obtain the wildcard cert and place it inside the shared volume
+docker run --rm -it -v reverseproxy_certs:/etc/letsencrypt certbot/dns-cloudflare certonly --dns-cloudflare --dns-cloudflare-credentials /opt/cloudflare.ini \
+-d "*.ele-net.de" -d ele-net.de 
