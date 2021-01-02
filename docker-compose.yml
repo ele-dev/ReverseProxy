@@ -1,0 +1,20 @@
+# Docker compose file for Nginx Reverse Proxy with SSL termination
+version: '3'
+
+services:
+    proxy:
+        image: nginx:1
+        restart: always
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes: 
+            - ./conf.d:/etc/nginx/conf.d
+            - certs:/etc/letsencrypt
+            - certs-data:/data/letsencrypt
+
+volumes:
+    certs:
+    certs-data:
+    
+        
