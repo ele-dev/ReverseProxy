@@ -1,21 +1,17 @@
 # Docker compose file for Nginx Reverse Proxy with SSL termination
-version: '3'
+version: '3.6'
 
 services:
     proxy:
-        image: nginx:1
+        build: "./"
         restart: always
-        hostname: www.ele-net.de
+        # hostname: www.ele-net.de
         ports:
             - "80:80"
             # - "443:443"
-        volumes: 
-            - ./conf.d:/etc/nginx/conf.d
-            - certs:/etc/letsencrypt
-            - certs-data:/data/letsencrypt
-
-volumes:
-    certs:
-    certs-data:
-    
-        
+        networks:
+            - default
+            - dmz_net
+networks:
+    dmz_net:
+        external: true
