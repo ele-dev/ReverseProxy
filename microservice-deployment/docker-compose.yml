@@ -1,0 +1,15 @@
+# Generic template for a microserivce behind the reverse proxy
+version: '3.6'
+services:
+    sg-bukkit:
+        build: "."
+        expose:
+            - "80"
+        restart: always
+        hostname: <serivcename>-host
+        networks:
+            - dmz_net
+            - default
+networks:
+    dmz_net: 
+        external: true
