@@ -1,7 +1,7 @@
 # Generic template for a microserivce behind the reverse proxy
 version: '3.6'
 services:
-    sg-bukkit:
+    <servicename>:
         build: "."
         expose:
             - "80"
