@@ -7,7 +7,6 @@ services:
         restart: always
         volumes: 
             - certs:/etc/letsencrypt
-        # hostname: www.ele-net.de
         ports:
             - "80:80"
             - "443:443"
