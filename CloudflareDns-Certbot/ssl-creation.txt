@@ -1,7 +1,7 @@
-# copy the cloudflare credentials inside the image 
+# copy the cloudflare credentials inside the image (command for dockerfile)
 COPY ./cloudflare.ini /opt/cloudflare.ini
 
-# build image
+# build image (execute on shell inside the folder with the dockerfile)
 docker build -t eledev/ssl-terminator .
 
 # start temp container to obtain the wildcard cert and place it inside the shared volume
