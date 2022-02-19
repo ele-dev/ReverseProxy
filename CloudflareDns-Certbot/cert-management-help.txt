@@ -1,15 +1,12 @@
-# copy the cloudflare credentials inside the image (command for dockerfile)
-COPY ./cloudflare.ini /opt/cloudflare.ini
-
-# build image (execute on shell inside the folder with the dockerfile)
+# build image (execute on shell inside the folder with the dockerfile) after cloudflare.ini was created
 docker build -t ssl-terminator .
 
-# start temp container to obtain the wildcard cert and place it inside the shared volume
+# start temp container to obtain the wildcard cert and place it inside the shared volume (one time setup task)
 docker run --rm -it -v reverseproxy_certs:/etc/letsencrypt ssl-terminator certonly --dns-cloudflare --dns-cloudflare-credentials /opt/cloudflare.ini \
 -d "*.<domain>" -d <domain> 
 
-# view the certificate in the volume
+# view the certificate in the shared volume and it's status
 docker run --rm -it -v reverseproxy_certs:/etc/letsencrypt ssl-terminator certificates
 
-# command for renewing all certificates that are about to expire (less than 30 days left)
+# command for renewing all certificates that are about to expire (less than 30 days left) --> can be automated with crontab
 docker run --rm -it -v reverseproxy_certs:/etc/letsencrypt ssl-terminator renew --noninteractive
