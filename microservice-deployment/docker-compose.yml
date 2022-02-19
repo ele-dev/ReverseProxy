@@ -4,7 +4,9 @@ services:
     <servicename>:
         build: "."
         expose:
-            - "80"
+            - "<port>"
+            - "<anotherPort>"
+            - etc.
         restart: always
         hostname: <serivcename>-host
         networks:
